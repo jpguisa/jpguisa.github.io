@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Roboto:ital,wght@0,100;0,300;0,500;1,700;1,900&display=swap');
+        html,body{
+            background: #061A2B;
+            padding:0;
+            margin:0;
+            font-family: 'PT Serif';
+        }
+        .header-title{
+            margin:3rem 0 2rem;
+            color: #fff;
+            text-align: center;
+        }
+        .team__grid{
+            padding:20px;
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .team__item{
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+            border-radius: 5px;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .team__item .hover-img{
+            border-radius: 5px;
+            transition: .1s ease;
+            position: absolute;
+            top: -100%;
+            left:0; 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+        }
+        .team__item.active .hover-img{
+            top: 0;
+        }
+    </style>
+    <div>
+        <h1 class="header-title">We take our work seriously!</h1e>
+    </div>
+    <div class="team__grid">
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+        <div class="team__item" style="background-image: url(images/default.png)"><div class="hover-img" style="background-image: url(images/hover.jpg)"></div></div>
+    </div>
+    <script>
+        let lastKnownScrollPosition = 0;
+        let ticking = false;
+        const teamItems = document.querySelectorAll('.team__item');
+        const title = document.querySelector('.header-title');
+
+        function changeImgs(event) {
+            event.preventDefault();
+
+            if(event.deltaY < 0){
+                title.textContent = 'We take our work seriously!';
+                teamItems.forEach(teamItem => {
+                    if(teamItem !== null){
+                        teamItem.classList.remove('active');
+                    }
+                })
+            }else{
+                title.textContent = 'We are also human!';
+                teamItems.forEach(teamItem => {
+                    if(teamItem !== null){
+                        teamItem.classList.add('active');
+                    }
+                })
+            }
+        }
+
+        const el = document.querySelector(".team__grid");
+        el.onwheel = changeImgs;
+    </script>
+</body>
+</html>
